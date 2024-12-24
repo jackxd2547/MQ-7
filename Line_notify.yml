@@ -1,0 +1,16 @@
+name: LINE Notify Alert
+
+on:
+  push:
+    paths:
+      - status.txt
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send LINE Notify
+        run: |
+          curl -X POST https://notify-api.line.me/api/notify \
+          -H "Authorization: Bearer 1YiSXzowk3kdcvn4pLNZpoNzsG6QNKLA9n5EbNsQBc9" \
+          -F "message=🚨 อัปเดตสถานะ: $(cat status.txt)"
